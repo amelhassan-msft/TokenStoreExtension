@@ -35,7 +35,7 @@ The Token Store Input Binding allows you to easily integrate multiple services t
 				- Token_url should be path up to service  
 
 ## Quick Start Example 
-#### Goal: List the files of a user's Dropbox account by prompting them to sign in with their Google account. This example shows how the input Token Store Binding makes it easy to link two external services in an Azure Function App. ***
+** Goal: List the files of a user's Dropbox account by prompting them to sign in with their Google account. This example shows how the input Token Store Binding makes it easy to link two external services in an Azure Function App. **
 	1. Choose and note down a {Function App Name} and a {Token Store Name}. These parameters must be strings. 
 	2. Register a Dropbox app 
 		- You need to register a Dropbox app in order to get authorized access 
