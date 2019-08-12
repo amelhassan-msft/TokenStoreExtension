@@ -62,12 +62,13 @@ The Token Store Input Binding allows you to easily integrate multiple services t
 		- Application Insights 
 	- Select your desired resource group and any Function App Name and Token Store Name 
 	- Fill in the Dropb App Id, Dropbox App Secret, Google Client_ID, and Google Client_Secret with values noted down from the previous steps. 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Famelhassan-msft%2FARM_Test%2Fmaster%2Fazuredeploy.json" target="_blank">
-<img src="http://azuredeploy.net/deploybutton.png"/> </a>
 5. Navigate to your Token Store and go to Services -> Dropbox -> Tokens. Click "login" next to the sampleToken and it will prompt you to login to you Dropbox account. 
 Now your Google and Dropbox accounts are linked. Sign in is only needed once as referesh tokens are handled for you.
 6. Run the example by navigating to your Azure Function App in the Azure Portal and under "Functions" copy and paste 
 the url of the "Dropbox_Google_TokenStoreBinding" function in your browser. 
 If successful, you may be prompted to login to your Google account and you should see your Dropbox files listed. 
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Famelhassan-msft%2FARM_Test%2Fmaster%2Fazuredeploy.json" target="_blank">
+<img src="http://azuredeploy.net/deploybutton.png"/> </a>
 
 ## Repository Layout 
