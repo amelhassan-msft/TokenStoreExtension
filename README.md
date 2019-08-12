@@ -52,9 +52,9 @@ The Token Store Input Binding allows you to easily integrate multiple services t
 	for your Azure Function App 
 	- Follow the steps [outlined here](https://docs.microsoft.com/en-us/azure/app-service/configure-authentication-provider-google)
 		- Skip step #1. Use the following URLs instead: 
-			- ** Authorized JavaScript Origins **: https://{Function App Name}.azurewebsites.net
-			- ** Auhtorized Domains List **: {Function App Name}.azurewebsites.net
-			- ** Authorized Redirect URI **: https://{Function App Name}.azurewebsites.net/.auth/login/google/callback
+			- **Authorized JavaScript Origins**: https://{Function App Name}.azurewebsites.net
+			- **Auhtorized Domains List**: {Function App Name}.azurewebsites.net
+			- **Authorized Redirect URI**: https://{Function App Name}.azurewebsites.net/.auth/login/google/callback
 4. Click the Deploy to Azure button below to deploy an Azure ARM template. 
 	- This template creates and appropriately configures the following Azure resources: 
 		- Token Store
