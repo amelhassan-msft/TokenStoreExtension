@@ -9,7 +9,7 @@ The Token Store Input Binding allows you to easily integrate multiple services t
 
 ## Binding Details 
 1. Token Store Input Binding 
-	- ** Input Parameters **: 
+	- **Input Parameters**
 		- [Auth_flag]
 			- Type: String 
 			- Options: "msi" or "user"
@@ -19,7 +19,7 @@ The Token Store Input Binding allows you to easily integrate multiple services t
 		- [Token_url] 
 			- Type: String 
 			- Options: "https://{example-tokenstore-name}.tokenstore.azure.net/services/{example-service}/tokens/{example-token-name}" or "https://{example-tokenstore-name}.tokenstore.azure.net/services/{example-service}"
-	- ** Usage Scienarios ** 
+	- **Usage Scienarios** 
 		1. MSI (Managed System Identity)
 			- Calls to Token Store are authenticated using the Function App's identity. Use this setup when you know the exact name of the token you want to retrieve. 
 			- [Auth_flag] = "msi"
@@ -55,9 +55,7 @@ The Token Store Input Binding allows you to easily integrate multiple services t
 			- ** Authorized JavaScript Origins **: https://{Function App Name}.azurewebsites.net
 			- ** Auhtorized Domains List **: {Function App Name}.azurewebsites.net
 			- ** Authorized Redirect URI **: https://{Function App Name}.azurewebsites.net/.auth/login/google/callback
-4. Click this button to deploy the Azure ARM template. 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Famelhassan-msft%2FARM_Test%2Fmaster%2Fazuredeploy.json" target="_blank">
-<img src="http://azuredeploy.net/deploybutton.png"/> </a>
+4. Click the Deploy to Azure button below to deploy an Azure ARM template. 
 	- This template creates and appropriately configures the following Azure resources: 
 		- Token Store
 		- Function App 
@@ -69,5 +67,8 @@ Now your Google and Dropbox accounts are linked. Sign in is only needed once as 
 6. Run the example by navigating to your Azure Function App in the Azure Portal and under "Functions" copy and paste 
 the url of the "Dropbox_Google_TokenStoreBinding" function in your browser. 
 If successful, you may be prompted to login to your Google account and you should see your Dropbox files listed. 
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Famelhassan-msft%2FARM_Test%2Fmaster%2Fazuredeploy.json" target="_blank">
+<img src="http://azuredeploy.net/deploybutton.png"/> </a>
 
 ## Repository Layout 
