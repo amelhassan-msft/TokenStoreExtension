@@ -68,7 +68,7 @@ Now your Google and Dropbox accounts are linked. Sign in is only needed once as 
 the url of the "Dropbox_Google_TokenStoreBinding" function in your browser. 
 If successful, you may be prompted to login to your Google account and you should see your Dropbox files listed. 
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Famelhassan-msft%2FARM_Test%2Fmaster%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Famelhassan-msft%2FTokenStoreExtension%2Fmaster%2Fazuredeploy.json" target="_blank">
 <img src="http://azuredeploy.net/deploybutton.png"/> </a>
 
 ## Repository Layout 
