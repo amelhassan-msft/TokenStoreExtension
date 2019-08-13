@@ -88,11 +88,11 @@
 
   "variables": {
     "functionAppName": "[parameters('functionAppName')]",
-    "applicationInsightsName": "[parameters('appName')]",
+    "applicationInsightsName": "[parameters('functionAppName')]",
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'azfunctions')]",
     "storageAccountid": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
     "functionWorkerRuntime": "dotnet",
-    "functionAppResourceId": "[resourceId('Microsoft.Web/sites/', parameters('appName'))]", 
+    "functionAppResourceId": "[resourceId('Microsoft.Web/sites/', parameters('functionAppName'))]", 
     "tokenStoreResourceId": "[resourceId('Microsoft.Token/stores/', parameters('tokenStoreName'))]"
   },
 
