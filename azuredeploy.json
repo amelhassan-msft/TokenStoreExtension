@@ -1,0 +1,325 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "functionAppName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the function app that you wish to create."
+      }
+    },
+
+    "repoURL": {
+        "type": "string",
+        "defaultValue": "https://github.com/amelhassan-msft/TokenStoreBindingExampleSourceControl"
+    },
+
+    "branch": {
+        "type": "string",
+        "defaultValue": "master"
+    },
+
+    "storageAccountType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": ["Standard_LRS", "Standard_GRS", "Standard_RAGRS"],
+      "metadata": {
+        "description": "Storage Account type"
+      }
+    },
+
+    "generalLocation": {
+      "type": "string",
+      "defaultValue": "centralus",
+      "metadata": {
+        "description": "Location for storage account, function app, source control, and application insights."
+      }
+    }, 
+
+    
+    "tokenStoreName": {
+      "type": "string",
+      "metadata": {
+          "description": "Name of the Token Store resource to be created"
+      }
+    },
+
+    "tokenStoreLocation": {
+      "type": "string",
+      "defaultValue": "West Central US",
+      "allowedValues": [
+          "West Central US"
+      ],
+
+      "metadata": {
+          "description": "Azure location where the Token Store resource will be deployed"
+      }
+    },
+
+    "dropboxAppId": {
+      "type": "string",
+      "metadata": {
+          "description": "App ID for the reigstered Dropbox application"
+       }
+    },
+
+  "dropboxAppSecret": {
+      "type": "securestring",
+      "metadata": {
+          "description": "App secret for the registered Dropbox application"
+        }
+     },
+
+     "googleClientID": {
+      "type": "string",
+      "metadata": {
+          "description": "Client id for registered google app. Optional."
+        }
+     },
+
+     "googleClientSecret": {
+      "type": "securestring",
+      "metadata": {
+          "description": "Client secret for registered google app. Optional."
+        }
+     }
+
+  },
+
+  "variables": {
+    "functionAppName": "[parameters('functionAppName')]",
+    "applicationInsightsName": "[parameters('appName')]",
+    "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'azfunctions')]",
+    "storageAccountid": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
+    "functionWorkerRuntime": "dotnet",
+    "functionAppResourceId": "[resourceId('Microsoft.Web/sites/', parameters('appName'))]", 
+    "tokenStoreResourceId": "[resourceId('Microsoft.Token/stores/', parameters('tokenStoreName'))]"
+  },
+
+  "resources": [
+    {
+      "type": "Microsoft.Token/stores",
+      "name": "[parameters('tokenStoreName')]",
+      "apiVersion": "2018-08-01-preview",
+      "location": "[parameters('tokenStoreLocation')]",
+      "properties": {
+          "authorizedPostRedirectUrls": [
+              "[concat('https://', variables('functionAppName'), '.azurewebsites.net/')]"
+          ]
+      },
+      "dependsOn": [],
+      "resources": [
+          {
+              "type": "accessPolicies",
+              "name": "[concat(variables('functionAppName'), 'Policy')]",
+              "apiVersion": "2018-08-01-preview",
+              "properties": {
+                  "principal": {
+                      "tenantId": "[reference(variables('functionAppResourceId'), '2018-02-01', 'Full').identity.tenantId]",
+                      "objectId": "[reference(variables('functionAppResourceId'), '2018-02-01', 'Full').identity.principalId]"
+                  },
+                  "permissions": [
+                      "Get",
+                      "List",
+                      "CreateOrUpdate",
+                      "Delete"
+                  ]
+              },
+              "dependsOn": [
+                  "[variables('tokenStoreResourceId')]"
+              ]
+
+          },
+
+          {
+              "type": "services",
+              "name": "dropbox",
+              "apiVersion": "2018-08-01-preview",
+
+              "properties": {
+                  "displayName": "Dropbox Service",
+                  "tokenParameters": { },
+                  "authentication": {
+                      "managedIdentityProvider": {
+                          "name": "dropbox"
+                      },
+                      "parameters": {
+                          "clientid": "[parameters('dropboxAppId')]",
+                          "clientsecret": "[parameters('dropboxAppSecret')]"
+                      }
+                  }
+              },
+              "dependsOn": [
+                  "[variables('tokenStoreResourceId')]"
+              ],
+              "resources": [
+                {
+                  "type": "tokens",
+                  "name": "sampleToken",
+                  "apiVersion": "2018-08-01-preview",
+                  "properties": {
+                      "displayName": "Sample Dropbox Token"
+                  },
+                  "dependsOn": [
+                      "[concat('Microsoft.Token/stores/', parameters('tokenStoreName'), '/services/dropbox')]"
+                  ]
+
+              }
+                
+              ]
+          }
+      ]
+    },
+    
+    {
+
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('storageAccountName')]",
+      "apiVersion": "2016-12-01",
+      "location": "[parameters('generalLocation')]",
+      "kind": "Storage",
+
+      "sku": {
+        "name": "[parameters('storageAccountType')]"
+      }
+    },
+
+    {
+      "apiVersion": "2015-08-01",
+      "type": "Microsoft.Web/sites",
+      "name": "[variables('functionAppName')]",
+      "location": "[parameters('generalLocation')]",
+      "identity": {
+          "type": "SystemAssigned"
+      },
+      "kind": "functionapp",
+
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+      ],
+
+      "resources": [
+        {
+          "apiVersion": "2015-08-01",
+          "name": "web",
+          "location": "[parameters('generalLocation')]",
+          "type": "sourcecontrols",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/Sites', variables('functionAppName'))]"
+          ],
+          "properties": {
+            "RepoUrl": "[parameters('repoURL')]",
+            "branch": "[parameters('branch')]",
+            "IsManualIntegration": false
+          }
+        },
+
+        {
+          "name": "[concat(variables('functionAppName'), '/authsettings')]",
+          "apiVersion": "2016-08-01",
+          "type": "Microsoft.Web/sites/config",
+          "location": "[parameters('generalLocation')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]"
+          ],
+          "properties": {
+            "enabled": true,
+            "unauthenticatedClientAction": "RedirectToLoginPage",
+            "tokenStoreEnabled": true,
+            "defaultProvider": "Google",
+            "clientId": null,
+            "issuer": null,
+            "allowedExternalRedirectUrls": null,
+            "clientSecret": null,
+            "clientSecretCertificateThumbprint": null,
+            "issuer": null,
+            "allowedAudiences": null,
+            "additionalLoginParams": null,
+            "isAadAutoProvisioned": false,
+            "googleClientId": "[parameters('googleClientId')]",
+            "googleClientSecret": "[parameters('googleClientSecret')]",
+            "googleOAuthScopes": null,
+            "facebookAppId": null,
+            "facebookAppSecret": null,
+            "facebookOAuthScopes": null,
+            "twitterConsumerKey": null,
+            "twitterConsumerSecret": null,
+            "microsoftAccountClientId": null,
+            "microsoftAccountClientSecret": null,
+            "microsoftAccountOAuthScopes": null 
+          }
+        }
+      ],
+
+      "properties": {
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "AzureWebJobsDashboard",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+            },
+
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+            },
+
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+            },
+
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[toLower(variables('functionAppName'))]"
+            },
+
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~2"
+            },
+
+            {
+              "name": "WEBSITE_NODE_DEFAULT_VERSION",
+              "value": "8.11.1"
+            },
+
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(resourceId('microsoft.insights/components/', variables('applicationInsightsName')), '2015-05-01').InstrumentationKey]"
+            },
+
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "[variables('functionWorkerRuntime')]"
+            },
+            {
+              "name": "Token_url_service",
+              "value": "[concat('https://',parameters('tokenStoreName'),'.tokenstore.azure.net/services/dropox')]"
+            },
+            {
+              "name": "Token_url_name",
+              "value": "[concat('https://',parameters('tokenStoreName'),'.tokenstore.azure.net/services/dropox/tokens/sampleToken')]"
+            }
+          ]
+        }
+      }
+    },
+
+    {
+        "apiVersion": "2018-05-01-preview",
+        "name": "[variables('applicationInsightsName')]",
+        "type": "microsoft.insights/components",
+        "location": "[parameters('generalLocation')]",
+        "tags": {
+          "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('applicationInsightsName'))]": "Resource"
+        },
+
+        "properties": {
+          "ApplicationId": "[variables('applicationInsightsName')]",
+          "Request_Source": "IbizaWebAppExtensionCreate"
+        }
+    }
+  ]
+
+}
