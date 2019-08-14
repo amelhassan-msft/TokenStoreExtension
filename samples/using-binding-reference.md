@@ -1,8 +1,8 @@
 # Using the TokenStoreBinding in your Azure Functions Created from Scratch 
 
 ## JavaScript Azure Function Instructions 
-Complete the steps under "PreReqs" [on this page](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function-azure-cli)
-Using the powershell command line, do the following to create a local Azure Function JS Project:
+Complete the steps under "PreReqs" [on this page](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function-azure-cli).
+Then, using the powershell command line, follow these steps to create a local Azure Function js project:
 - Enter the "func init" command
 - Choose node js runtime 
 - Create a function template of your choice 
@@ -12,23 +12,27 @@ Using the powershell command line, do the following to create a local Azure Func
     - Example for the "msi" scenario:
     ``` 
     {
-        "type": "TokenStoreBinding",
-        "direction": "in",
-        "name": "TokenBindingOutput",
-        "Token_url": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}/tokens/{your-token-name}",
-        "Auth_flag": "msi", 
-        "Identity_provider": null
+        "bindings":[{
+            "type": "TokenStoreBinding",
+            "direction": "in",
+            "name": "TokenBindingOutput",
+            "Token_url": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}/tokens/{your-token-name}",
+            "Auth_flag": "msi", 
+            "Identity_provider": null
+        }]
     }
     ```
     - Example for the "user" scenario:
     ```
     {
-        "type": "TokenStoreBinding",
-        "direction": "in",
-        "name": "TokenBindingOutput",
-        "Token_url": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}",
-        "Auth_flag": "user", 
-        "Identity_provider": "aad"
+        "bindings":[{
+            "type": "TokenStoreBinding",
+            "direction": "in",
+            "name": "TokenBindingOutput",
+            "Token_url": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}",
+            "Auth_flag": "user", 
+            "Identity_provider": "aad"
+        }]
     }
     ```
 - In your index.js main function, reference the binding by its "name" to access its output 
