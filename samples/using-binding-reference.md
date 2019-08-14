@@ -31,21 +31,21 @@ Using the powershell command line, do the following to create a local Azure Func
         "Identity_provider": "aad"
     }
 ```
-- In your index.js main function, reference the binding by its "name"to access its output 
+- In your index.js main function, reference the binding by its "name" to access its output 
 - Deploy your code to the Azure Portal 
 
 Trouble shooting 
 - Some helpful command line prompts:
-	○ dotnet restore
+    - dotnet restore
         - Restores dependencies and tools of a project
-	○ dotnet build 
+    - dotnet build 
         - Builds a .net core application 
 
 ## C# Azure Function Instructions 
 - Use Visual Studios to create a local Azure Functions template project 
 - To be able to use the TokenStoreBinding complete one of the following 
-    1. In Visual Studios navigate to "Manage NuGet" packages and search for and install the "Amel.TokenStoreBinding.Net" package 
-    2. Clone this GitHub repo and build the TokenStoreBinding project (under binding-library) using Visual Studios. Add the dll of this built project to your Azure Function Visual Studios Project. 
+    - In Visual Studios navigate to "Manage NuGet" packages and search for and install the "Amel.TokenStoreBinding.Net" package 
+    - Clone this GitHub repo and build the TokenStoreBinding project (under binding-library) using Visual Studios. Add the dll of this built project to your Azure Function Visual Studios Project. 
 - Deploy your function to the Azure Portal 
 
 ## General Settings 
