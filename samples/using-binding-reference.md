@@ -30,7 +30,7 @@ Using the powershell command line, do the following to create a local Azure Func
         "Auth_flag": "user", 
         "Identity_provider": "aad"
     }
-```
+    ```
 - In your index.js main function, reference the binding by its "name" to access its output 
 - Deploy your code to the Azure Portal 
 
