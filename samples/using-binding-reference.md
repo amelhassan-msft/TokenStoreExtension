@@ -4,10 +4,10 @@
 Complete the steps under "PreReqs" [on this page](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function-azure-cli).
 Then, using the powershell command line, follow these steps to create a local Azure Function js project:
 - Enter the "func init" command
-- Choose node js runtime 
+- Choose node js runtime
 - Create a function template of your choice 
-- To install the TokenExtension NuGet package run this command: "func extensions install -p Amel.TokenStoreBinding.Net -v 1.0.0"
-- To generate an extensions.csproj run this command: "func extensions sync"
+- To install the TokenExtension NuGet package run this command: **"func extensions install -p Amel.TokenStoreBinding.Net -v 1.0.0"**
+- To generate an extensions.csproj run this command: **"func extensions sync"**
 - To use the TokenStoreBinding, include the binding in your function.json file 
     - Example for the "msi" scenario:
     ``` 
@@ -48,9 +48,9 @@ Trouble shooting
 ## C# Azure Function Instructions 
 - Use Visual Studios to create a local Azure Functions template project 
 - To be able to use the TokenStoreBinding complete one of the following 
-    - In Visual Studios navigate to "Manage NuGet" packages and search for and install the "Amel.TokenStoreBinding.Net" package 
-    - Clone this GitHub repo and build the TokenStoreBinding project (under binding-library) using Visual Studios. Add the dll of this built project to your Azure Function Visual Studios Project. 
-- Deploy your function to the Azure Portal 
+    - In Visual Studios navigate to **"Manage NuGet"** packages and search for and install the **"Amel.TokenStoreBinding.Net"** package 
+    - Clone this GitHub repo and build the TokenStoreBinding project (under binding-library) using Visual Studios. Add the dll of this built project to your Azure Function Visual Studios Project as an assembly reference. 
+- Deploy your function to the Azure Portal
 
 ## General Settings 
 1. Set up Authentication Configurations for your Azure Function App in the Azure Portal 
