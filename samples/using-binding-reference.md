@@ -10,26 +10,26 @@ Using the powershell command line, do the following to create a local Azure Func
 - To generate an extensions.csproj run this command: "func extensions sync"
 - To use the TokenStoreBinding, include the binding in your function.json file 
     - Example for the "msi" scenario:
-``` 
-{
-"type": "TokenStoreBinding",
-"direction": "in",
-"name": "TokenBindingOutput",
-"Token_url": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}/tokens/{your-token-name}",
-"Auth_flag": "msi", 
-"Identity_provider": null
-}
-```
+    ``` 
+    {
+        "type": "TokenStoreBinding",
+        "direction": "in",
+        "name": "TokenBindingOutput",
+        "Token_url": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}/tokens/{your-token-name}",
+        "Auth_flag": "msi", 
+        "Identity_provider": null
+    }
+    ```
     - Example for the "user" scenario:
-```
-{
-    "type": "TokenStoreBinding",
-    "direction": "in",
-    "name": "TokenBindingOutput",
-    "Token_url": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}",
-    "Auth_flag": "user", 
-    "Identity_provider": "aad"
-}
+    ```
+    {
+        "type": "TokenStoreBinding",
+        "direction": "in",
+        "name": "TokenBindingOutput",
+        "Token_url": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}",
+        "Auth_flag": "user", 
+        "Identity_provider": "aad"
+    }
 ```
 - In your index.js main function, reference the binding by its "name"to access its output 
 - Deploy your code to the Azure Portal 
