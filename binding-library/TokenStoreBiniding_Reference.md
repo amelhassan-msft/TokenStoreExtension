@@ -3,8 +3,18 @@
 ## Access 
 - NuGet or dll 
 ## Usage 
-- Declaritive 
-- Imperative 
+- Declarative TokenStoreInputBinding in a C# Azure Function (include as an input to your function)
+``` 
+[TokenStoreInputBinding(tokenUrl = "https://{token-store-name}.tokenstore.azure.net/services/{service}",
+            authFlag = "user", identityProvider = "google")] string outputToken
+``` 
+- Imperative TokenStoreInputBinding in a C# Azure Function (use within your function)
+	- As input parameter to your function include: Binder binder
+	- Inside of your function include the following:
+	``` 
+            TokenStoreInputBindingAttribute attribute = new TokenStoreInputBindingAttribute("https://{token-store-name}.tokenstore.azure.net/services/{service}", "user", "google"); // Initialize TokenStoreBinding
+            var outputToken = await binder.BindAsync<string>(attribute);
+	``` 
 ## The bindings 
 - TokenStoreInputBinding
     - **Inputs**:
@@ -39,6 +49,6 @@
 				- Token_url should be path up to service  
 	- **Token naming convention for "User" scenario**
 
-	
+
 	- **Edge Cases**
 		- If the token specified does not exist, the TokenStoreInputBinding will create the token with the given name and prompt the user to login. 
