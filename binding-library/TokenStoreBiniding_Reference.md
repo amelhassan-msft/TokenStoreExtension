@@ -49,18 +49,14 @@ to generate a dll that can be included as an assembly reference in your Azure Fu
 			- [identityProvider] = "aad" or "facebook" or "google"
 			- [tokenUrl] = https://{example-tokenstore-name}.tokenstore.azure.net/services/{example-service}
 				- Token_url should be path up to service  
-	- **Token naming convention for "User" scenario**
-		| Login    | Token Display Name   | Token Name               |
-		| :---     |   :---               |    :---                  |
-		| aad      | {upn}                | {Tenant ID} - {Object ID}|
-		| facebook | Facebook: {username} | {Facebook ID}            |
-		|  Google  |  {Email}             |  {Sub ID}                |
+	- **Token Naming Convention**
+		- If the token specified does not exist, the TokenStoreInputBinding will create the token with the given name and prompt the user to login. In the "msi" case, 
+		the toke name will be extracted from the provided url path of the token. In the "user" case, the token name will be constructed based on the login identityProvider specified and 
+		a predetermined naming convention (see table below). 
+	
 
-	- **Edge Cases**
-		- If the token specified does not exist, the TokenStoreInputBinding will create the token with the given name and prompt the user to login. 
-
-	| Login | Token Display Name | Token Name |
-	| :---      |   :---   |    :--- |
-	| aad      | {upn} | {Tenant ID} - {Object ID} |
-	| facebook | Facebook: {username} | {Facebook ID} |
-	|  Google  |  {Email}  |  {Sub ID}   |
+	| Login    | Token Display Name   | Token Name               |
+	| :---     |   :---               |    :---                  |
+	| aad      | {upn}                | {Tenant ID} - {Object ID}|
+	| facebook | Facebook: {username} | {Facebook ID}            |
+	|  Google  |  {Email}             |  {Sub ID}                |
