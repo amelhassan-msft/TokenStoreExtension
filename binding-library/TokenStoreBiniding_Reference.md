@@ -50,11 +50,11 @@ to generate a dll that can be included as an assembly reference in your Azure Fu
 			- [tokenUrl] = https://{example-tokenstore-name}.tokenstore.azure.net/services/{example-service}
 				- Token_url should be path up to service  
 	- **Token naming convention for "User" scenario**
-	| Login    | Token Display Name   | Token Name               |
-	| :---     |   :---               |    :---                  |
-	| aad      | {upn}                | {Tenant ID} - {Object ID}|
-	| facebook | Facebook: {username} | {Facebook ID}            |
-	|  Google  |  {Email}             |  {Sub ID}                |
+		| Login    | Token Display Name   | Token Name               |
+		| :---     |   :---               |    :---                  |
+		| aad      | {upn}                | {Tenant ID} - {Object ID}|
+		| facebook | Facebook: {username} | {Facebook ID}            |
+		|  Google  |  {Email}             |  {Sub ID}                |
 
 	- **Edge Cases**
 		- If the token specified does not exist, the TokenStoreInputBinding will create the token with the given name and prompt the user to login. 
