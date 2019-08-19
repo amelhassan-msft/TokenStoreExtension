@@ -1,7 +1,9 @@
 # Azure Function [bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings) for interacting with [Token Store](https://github.com/azure/azure-tokens) 
 
 ## Access 
-- NuGet or dll 
+To use the most up to date Token Store bindings, install the **Microsoft.Extensions.TokenStore NuGet package**. If you 
+would like to make changes to the binding code, clone this GitHub repo, and build the projects in the binding-library 
+to generate a dll that can be included as an assembly reference in your Azure Functions project.  
 ## Usage 
 - Declarative TokenStoreInputBinding in a C# Azure Function (include as an input to your function)
 ``` 
@@ -48,7 +50,11 @@
 			- [tokenUrl] = https://{example-tokenstore-name}.tokenstore.azure.net/services/{example-service}
 				- Token_url should be path up to service  
 	- **Token naming convention for "User" scenario**
-
+	| Login | Token Display Name | Token Name |
+	| :---  |   :---   |    :--- |
+	| aad   | {upn} | {Tenant ID} - {Object ID} |
+	| facebook | Facebook: {username} | {Facebook ID} |
+	|  Google  |  {Email}  |  {Sub ID}   |
 
 	- **Edge Cases**
 		- If the token specified does not exist, the TokenStoreInputBinding will create the token with the given name and prompt the user to login. 
