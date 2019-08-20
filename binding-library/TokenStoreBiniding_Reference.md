@@ -1,7 +1,7 @@
 # Azure Function [bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings) for interacting with [Token Store](https://github.com/azure/azure-tokens) 
 
 ## Access 
-To use the most up to date Token Store bindings, install the **azure.functions.tokenstore.extension.v1** NuGet package. If you 
+To use the most up to date Token Store bindings, install the **azurefunctions.tokenstore.extension.v1** NuGet package. If you 
 would like to make changes to the binding code, clone this GitHub repo, and build the projects in the binding-library 
 to generate a dll that can be included as an assembly reference in your Azure Functions project.  
 ## Usage 

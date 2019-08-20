@@ -71,3 +71,5 @@ If successful, you may be prompted to login to your Google account and you shoul
 <img src="http://azuredeploy.net/deploybutton.png"/> </a>
 
 ## Repository Layout 
+The binding-library folder contains the source code for the Token Store bindings. The samples folder contains source code for Azure Function apps 
+created locally (c# and JavaScript examples). 
