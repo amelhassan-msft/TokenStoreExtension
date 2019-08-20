@@ -1,0 +1,63 @@
+version: 1.0.{build}
+
+pull_requests:
+
+  do_not_increment_build_number: true
+
+branches:
+
+  only:
+
+  - master
+
+image: Visual Studio 2017
+
+install:
+
+- ps: >-
+
+    $env:CommitHash = "$env:APPVEYOR_REPO_COMMIT"
+
+
+
+cache: '%USERPROFILE%\.nuget\packages'
+
+build_script:
+
+- ps: >
+
+    dotnet --version
+
+
+version: 1.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+  - master
+image: Visual Studio 2017
+install:
+- ps: >-
+    $env:CommitHash = "$env:APPVEYOR_REPO_COMMIT"
+
+cache: '%USERPROFILE%\.nuget\packages'
+build_script:
+- ps: >
+    dotnet --version
+
+    $PackArguments = '-o', '..\buildoutput', '--no-build'
+    
+    If ($env:APPVEYOR_REPO_BRANCH -ne "master") 
+    {
+        $PackArguments = $PackArguments + '--version-suffix', '"-$env:APPVEYOR_BUILD_NUMBER"'
+    }
+    
+    dotnet build -v q
+
+    dotnet pack .\binding-library\TokenStoreInputBinding\TokenStoreBindingProject.csproj $PackArguments
+
+artifacts:
+- path: '**\*.nupkg'
+  name: Binaries
+hosts:
+  api.nuget.org: 93.184.221.200

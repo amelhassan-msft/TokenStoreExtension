@@ -10,9 +10,9 @@ The Token Store Input Binding allows you to easily integrate multiple services t
 ## Binding Details 
 1. Token Store Input Binding 
 	- **Input Parameters**
-		- [authFlag]
+		- [scenario]
 			- Type: String 
-			- Options: "msi" or "user"
+			- Options: "tokenName" or "user"
 		- [identityProvider] 
 			- Type: String 
 			- Options: "aad" or "facebook" or "google" or null 
@@ -20,15 +20,15 @@ The Token Store Input Binding allows you to easily integrate multiple services t
 			- Type: String 
 			- Options: "https://{example-tokenstore-name}.tokenstore.azure.net/services/{example-service}/tokens/{example-token-name}" or "https://{example-tokenstore-name}.tokenstore.azure.net/services/{example-service}"
 	- **Usage Scienarios** 
-		1. MSI (Managed System Identity)
-			- Calls to Token Store are authenticated using the Function App's identity. Use this setup when you know the exact name of the token you want to retrieve. 
-			- [authFlag] = "msi"
+		1. Token Name
+			- Tokens are retrieved using the token name specified in the url. Use this setup when you know the exact name of the token you want to retrieve. 
+			- [scenario] = "tokenName"
 			- [identityProvider] = null
 			- [tokenUrl] = https://{example-tokenstore-name}.tokenstore.azure.net/services/{example-service}/tokens/{example-token-name} 
 				- Token_url should be path up to token name 
 		2. User 
-			- Calls to Token Store are authenticated using the Function App's identity. Use this setup when you want to construct the name of the token using the logged in user's credentilas. Authorization/Authentication must be setup for your Function App so that users can be prompted to login. You must use an Http triggered function as the binding accesses the request header.
-			- [authFlag] = "user"
+			- Tokens are retrieved using a token name constructed using the logged in user's credentials. Use this setup when you want to retrieve tokens based on a user's identity. Authorization/Authentication must be setup for your Function App so that users can be prompted to login. 
+			- [scenario] = "user"
 			- [identityProvider] = "aad" or "facebook" or "google"
 			- [tokenUrl] = https://{example-tokenstore-name}.tokenstore.azure.net/services/{example-service}
 				- Token_url should be path up to service  
