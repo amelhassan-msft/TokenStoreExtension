@@ -6,19 +6,19 @@ Then, using the powershell command line, follow these steps to create a local Az
 - Enter the "func init" command
 - Choose node js runtime
 - Create a function template of your choice 
-- To install the TokenExtension NuGet package run this command: **"func extensions install -p Amel.TokenStoreBinding.Net -v 1.0.0"**
+- To install the TokenExtension NuGet package run this command: **"func extensions install -p azure.functions.tokenstore.extension.v1 -v 1.0.0"**
 - To generate an extensions.csproj run this command: **"func extensions sync"**
 - To use the TokenStoreBinding, include the binding in your function.json file 
-    - Example for the "msi" scenario:
+    - Example for the "tokenName" scenario:
     ``` 
     {
         "bindings":[{
             "type": "TokenStoreBinding",
             "direction": "in",
             "name": "TokenBindingOutput",
-            "Token_url": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}/tokens/{your-token-name}",
-            "Auth_flag": "msi", 
-            "Identity_provider": null
+            "tokenUrl": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}/tokens/{your-token-name}",
+            "scenario": "tokenName", 
+            "identityProvider": null
         }]
     }
     ```
@@ -29,9 +29,9 @@ Then, using the powershell command line, follow these steps to create a local Az
             "type": "TokenStoreBinding",
             "direction": "in",
             "name": "TokenBindingOutput",
-            "Token_url": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}",
-            "Auth_flag": "user", 
-            "Identity_provider": "aad"
+            "tokenUrl": "https://{your-tokenstore-name}.tokenstore.azure.net/services/{name-of-your-service}",
+            "scienario": "user", 
+            "identityProvider": "aad"
         }]
     }
     ```
@@ -48,7 +48,7 @@ Trouble shooting
 ## C# Azure Function Instructions 
 - Use Visual Studios to create a local Azure Functions template project 
 - To be able to use the TokenStoreBinding complete one of the following 
-    - In Visual Studios navigate to **"Manage NuGet"** packages and search for and install the **"Amel.TokenStoreBinding.Net"** package 
+    - In Visual Studios navigate to **"Manage NuGet"** packages and search for and install the **"azure.functions.tokenstore.extension.v1"** package 
     - Clone this GitHub repo and build the TokenStoreBinding project (under binding-library) using Visual Studios. Add the dll of this built project to your Azure Function Visual Studios Project as an assembly reference. 
 - Deploy your function to the Azure Portal
 
