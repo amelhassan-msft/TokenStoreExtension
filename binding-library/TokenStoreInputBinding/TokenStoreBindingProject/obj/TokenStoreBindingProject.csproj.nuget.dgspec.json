@@ -1,0 +1,80 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\t-amhass\\Documents\\Github\\TokenStore_FunctionBinding\\TokenStoreBindingProject\\TokenStoreBindingProject\\TokenStoreBindingProject.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\t-amhass\\Documents\\Github\\TokenStore_FunctionBinding\\TokenStoreBindingProject\\TokenStoreBindingProject\\TokenStoreBindingProject.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\t-amhass\\Documents\\Github\\TokenStore_FunctionBinding\\TokenStoreBindingProject\\TokenStoreBindingProject\\TokenStoreBindingProject.csproj",
+        "projectName": "TokenStoreBindingProject",
+        "projectPath": "C:\\Users\\t-amhass\\Documents\\Github\\TokenStore_FunctionBinding\\TokenStoreBindingProject\\TokenStoreBindingProject\\TokenStoreBindingProject.csproj",
+        "packagesPath": "C:\\Users\\t-amhass\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\t-amhass\\Documents\\Github\\TokenStore_FunctionBinding\\TokenStoreBindingProject\\TokenStoreBindingProject\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\t-amhass\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.Azure.Services.AppAuthentication": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "Microsoft.Graph": {
+              "target": "Package",
+              "version": "[1.16.0, )"
+            },
+            "Microsoft.NET.Sdk.Functions": {
+              "target": "Package",
+              "version": "[1.0.29, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.5.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
