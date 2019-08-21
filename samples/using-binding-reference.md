@@ -2,11 +2,8 @@
 
 ## JavaScript Azure Function Instructions 
 Complete the steps under "PreReqs" [on this page](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function-azure-cli).
-Then, using the powershell command line, follow these steps to create a local Azure Function js project:
-- Enter the "func init" command
-- Choose node js runtime
-- Create a function template of your choice 
-- To install the TokenExtension NuGet package run this command: **"func extensions install -p azure.functions.tokenstore.extension.v1 -v 1.0.0"**
+After you have created your node JS Azure Function app follow these steps to be able to use the TokenStoreBindings.
+- To install the TokenExtension NuGet package run this command: **"func extensions install -p azurefunctions.tokenstore.extension.v1 -v 1.0.1"**
 - To generate an extensions.csproj run this command: **"func extensions sync"**
 - To use the TokenStoreBinding, include the binding in your function.json file 
     - Example for the "tokenName" scenario:
@@ -48,7 +45,7 @@ Trouble shooting
 ## C# Azure Function Instructions 
 - Use Visual Studios to create a local Azure Functions template project 
 - To be able to use the TokenStoreBinding complete one of the following 
-    - In Visual Studios navigate to **"Manage NuGet"** packages and search for and install the **"azure.functions.tokenstore.extension.v1"** package 
+    - In Visual Studios navigate to **"Manage NuGet"** packages and search for and install the **"azurefunctions.tokenstore.extension.v1"** package 
     - Clone this GitHub repo and build the TokenStoreBinding project (under binding-library) using Visual Studios. Add the dll of this built project to your Azure Function Visual Studios Project as an assembly reference. 
 - Deploy your function to the Azure Portal
 

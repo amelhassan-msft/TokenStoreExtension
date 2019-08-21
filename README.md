@@ -73,3 +73,11 @@ If successful, you may be prompted to login to your Google account and you shoul
 ## Repository Layout 
 The binding-library folder contains the source code for the Token Store bindings. The samples folder contains source code for Azure Function apps 
 created locally (c# and JavaScript examples). 
+
+## Future Work
+- The JavaScript example no longer works due to updates to the TokenStoreInputBinding source code. To fix the issue, deploy another NuGet package (in .Net Standard 2.0 framework)
+and install it as an extensions in your Azure Function App JavaScript project. 
+- Login support can be added for Twitter and Microsoft for the TokenStoreInputBinding (i.e. the identityProvider parameter would have the added options of "microsoft" and "twitter")
+- A redirect page for allowing users to login to tokens that are unauthenticated can be added so that the binding does not throw an exception in this case. Instead user's will be redirected to login 
+and will then be redirected to their Azure Function. 
+- A TokenStoreOutputBinding can be created to allow for even more integration between Azure Functions and Token Store. 

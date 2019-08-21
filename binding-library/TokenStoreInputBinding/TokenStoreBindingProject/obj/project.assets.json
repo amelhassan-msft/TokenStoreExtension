@@ -7693,16 +7693,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\t-amhass\\Documents\\Github\\TokenStore_FunctionBinding\\TokenStoreBindingProject\\TokenStoreBindingProject\\TokenStoreBindingProject.csproj",
+      "projectUniqueName": "C:\\Users\\t-amhass\\Documents\\Github\\TokenStoreExtension\\binding-library\\TokenStoreInputBinding\\TokenStoreBindingProject\\TokenStoreBindingProject.csproj",
       "projectName": "TokenStoreBindingProject",
-      "projectPath": "C:\\Users\\t-amhass\\Documents\\Github\\TokenStore_FunctionBinding\\TokenStoreBindingProject\\TokenStoreBindingProject\\TokenStoreBindingProject.csproj",
+      "projectPath": "C:\\Users\\t-amhass\\Documents\\Github\\TokenStoreExtension\\binding-library\\TokenStoreInputBinding\\TokenStoreBindingProject\\TokenStoreBindingProject.csproj",
       "packagesPath": "C:\\Users\\t-amhass\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\t-amhass\\Documents\\Github\\TokenStore_FunctionBinding\\TokenStoreBindingProject\\TokenStoreBindingProject\\obj\\",
+      "outputPath": "C:\\Users\\t-amhass\\Documents\\Github\\TokenStoreExtension\\binding-library\\TokenStoreInputBinding\\TokenStoreBindingProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+        "C:\\Users\\t-amhass\\Documents\\Github\\TokenStoreExtension\\NuGet.Config",
         "C:\\Users\\t-amhass\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7711,7 +7712,9 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.myget.org/F/azure-appservice-staging/api/v2": {},
+        "https://www.myget.org/F/azure-appservice/api/v2": {}
       },
       "frameworks": {
         "netstandard2.0": {

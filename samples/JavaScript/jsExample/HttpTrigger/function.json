@@ -1,0 +1,28 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }, 
+    {
+      "type": "TokenStoreInputBinding",
+      "direction": "in",
+      "name": "tokenBindingOutput",
+      "tokenUrl": "https://joetest.tokenstore.azure.net/services/dropbox/tokens/sampletoken",
+      "scenario": "tokenName", 
+      "identityProvider": "aad"
+    }
+  ]
+}
