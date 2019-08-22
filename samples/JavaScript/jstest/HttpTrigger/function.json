@@ -15,14 +15,15 @@
       "type": "http",
       "direction": "out",
       "name": "res"
-    }, 
+    },
     {
       "type": "TokenStoreInputBinding",
       "direction": "in",
       "name": "tokenBindingOutput",
       "tokenUrl": "https://joetest.tokenstore.azure.net/services/dropbox/tokens/sampletoken",
-      "scenario": "tokenName", 
+      "scenario": "user",
       "identityProvider": "aad"
     }
+      
   ]
 }
